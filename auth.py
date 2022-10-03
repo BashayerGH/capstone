@@ -135,8 +135,12 @@ def requires_auth(permission=''):
             token = get_token_auth_header()
             payload = verify_decode_jwt(token)
             check_permissions(permission, payload)
-            if(kwargs.get('id')):
+            if (kwargs.get('id')):
                 return f(kwargs.get('id'))
+            elif (kwargs.get('category')):
+                return f(kwargs.get('category'))
+            elif (kwargs.get('book_id')):
+                return f(kwargs.get('book_id'))
             else:
              return f(payload, *args, **kwargs)
         return wrapper

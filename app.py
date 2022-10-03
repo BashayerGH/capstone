@@ -30,7 +30,7 @@ def create_app(test_config=None):
   # GET all available categories
   @app.route(BASE+'/categories')
   @requires_auth('get:categories')
-  def all_categories():
+  def all_categories(self):
     try:
       all_categories = Category.query.all()
       categories_list = [category.format() for category in all_categories]
@@ -47,10 +47,10 @@ def create_app(test_config=None):
       abort(500)
 
 
-  # GET all available categories
+  # GET all available books
   @app.route(BASE+'/books')
   @requires_auth('get:books')
-  def all_books():
+  def all_books(self):
     try:
       all_books = Book.query.all()
       books_list = books_list_paginated(request, all_books)
@@ -69,7 +69,7 @@ def create_app(test_config=None):
 
   @app.route(BASE+'/books', methods=['POST'])
   @requires_auth('post:books')
-  def post_new_book():
+  def post_new_book(self):
     try:
         data = request.json
         category = int(data['category'])
@@ -142,7 +142,7 @@ def create_app(test_config=None):
   # Search for a book by its (title, author)
   @app.route(BASE+'/books/search', methods=['POST'])
   @requires_auth('get:booksBySearchTerm')
-  def search():
+  def search(self):
     data = request.json
     searchTerm = data['searchTerm']
     if (searchTerm == ''):
@@ -171,7 +171,7 @@ def create_app(test_config=None):
   def update_existing_book(book_id):
     data = request.json
     title = data['title']
-    subtitle = data['subTitle']
+    subtitle = data['sub_title']
     description = data['description']
 
 
@@ -195,10 +195,6 @@ def create_app(test_config=None):
         abort(422)
 
 
-
-
-
-
   # Common methods
   def books_list_paginated(request, list):
     page = request.args.get('page', 1, type=int)
@@ -207,6 +203,8 @@ def create_app(test_config=None):
     books_list = [book.format() for book in list]
     books_paginated = books_list[start:end]
     return books_paginated
+
+
 
   # Error handler for expected error 404
   @app.errorhandler(404)
