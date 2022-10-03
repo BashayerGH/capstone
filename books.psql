@@ -1,0 +1,197 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.3
+-- Dumped by pg_dump version 11.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: student
+--
+
+CREATE TABLE public.categories (
+    id integer NOT NULL,
+    type text
+);
+
+
+ALTER TABLE public.categories OWNER TO student;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: student
+--
+
+CREATE SEQUENCE public.categories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categories_id_seq OWNER TO student;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: student
+--
+
+ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
+
+
+--
+-- Name: books; Type: TABLE; Schema: public; Owner: student
+--
+
+CREATE TABLE public.books (
+    id integer NOT NULL,
+    title text,
+    sub_title text,
+    author text,
+    category integer,
+    publisher text,
+    pages integer,
+    publish_date text,
+    description text
+);
+
+
+ALTER TABLE public.books OWNER TO student;
+
+--
+-- Name: books_id_seq; Type: SEQUENCE; Schema: public; Owner: student
+--
+
+CREATE SEQUENCE public.books_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.books_id_seq OWNER TO student;
+
+--
+-- Name: books_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: student
+--
+
+ALTER SEQUENCE public.books_id_seq OWNED BY public.books.id;
+
+
+--
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: student
+--
+
+ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
+
+
+--
+-- Name: books id; Type: DEFAULT; Schema: public; Owner: student
+--
+
+ALTER TABLE ONLY public.books ALTER COLUMN id SET DEFAULT nextval('public.books_id_seq'::regclass);
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: student
+--
+
+COPY public.categories (id, type) FROM stdin;
+1	Science
+2	Art
+3	Cooking
+4	History
+5	Fantasy
+6	Childrens
+7	self help
+\.
+
+
+--
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: student
+--
+
+COPY public.books (id, title, sub_title, author, category, publisher, pages, publish_date, description) FROM stdin;
+5	The Code Book	The Science of Secrecy from Ancient Egypt to Quantum Cryptography	Simon Singh Dr	1	Anchor Books	432	29-08-2000	Throughout the text are clear technical and mathematical explanations, and portraits of the remarkable personalities who wrote and broke the world's most difficult codes. Accessible, compelling, and remarkably far-reaching, this book will forever alter your view of history and what drives it. It will also make you wonder how private that e-mail you just sent really is.
+6	Why We Sleep	Unlocking The Power Of Sleep And Dreams	Departmental Lecturer in the History of Art Matthew Walker PhD	1	Scribner Book Company	368	19-06-2018	Why We Sleep Is An Important And Fascinating Book...Walker Taught Me A Lot About This Basic Activity That Every Person On Earth Needs. I Suspect His Book Will Do The Same For You.
+7	The Brain	The Story of You	David Eagleman	1	Vintage	256	07-03-2017	Locked in the silence and darkness of your skull, your brain fashions the rich narratives of your reality and your identity. Join renowned neuroscientist David Eagleman for a journey into the questions at the mysterious heart of our existence.
+8	This Is Home	The Art Of Simple Living	Natalie Walton	2	Hardie Grant Books	240	01-04-2018	This Is Home Is About Simple Living - How To Focus On Our Values To Create Authentic Homes Full Of Meaning And Joy. Natalie Walton Steps Inside Fifteen Homes Across The World To Meet The People Who Made Them, And Discover Whether There Is Some Universality To What Makes Us Happy In The Spaces We Inhabit. Filled With Beautiful Photography, Transporting Stories And Practical Advice, This Is Home Reminds And Inspires Us To Nurture The Space That Helps Make Our Lives Possible.
+9	365 Days Of Art	A Creative Exercise For Every Day Of The Year	Lorna Scobie	2	Hardie Grant Books	352	19-10-2017	365 Days Of Art Is An Inspiring Journal Designed To Help Readers And Budding Artists Nurture Their Creativity And Explore Their Feelings Through The Medium Of Art. Featuring An Activity For Every Day Of The Year, From Simple Tasks Like Drawing Shapes And Lines, To More Mindful Exercises Like Coloring-In, Painting With Primary Colors, And Drawing What You See. With Beautiful, Vibrant Hand-Lettering And Watercolor Illustrations, The Book Pairs Inspiring Quotes With Supportive Prompts And Exercises To Spark Reflection Through Your Drawing, Writing, Painting And More.
+10	The Arts	A Visual Encyclopedia	Dorling Kindersley	2	DK Publishing	304	01-08-2017	The entire history of the greatest works in painting, sculpture, and photography are included on this comprehensive and colourful tour through time.
+11	The Complete Mediterranean Cookbook	Tested Recipes For Living And Eating Well Every Day	America's Test Kitchen	3	America's Test Kitchen	440	27-12-2017	the new modern classic & bestseller on the famously healthy Mediterranean Diet.
+12	Gordon Ramsay's Ultimate Cookery Course	Gordon Ramsay’s TV	Gordon Ramsay	3	Hodder & Stoughton	320	30-08-2012	Gordon Ramsay's Ultimate Cookery Course is about giving home cooks the desire, confidence and inspiration to hit the stoves and get cooking, with over 120 modern, simple and accessible recipes. The ultimate reference bible, it's a lifetime's worth of expertise from one of the world's finest chefs distilled into a beautiful book.
+13	Gordon Ramsay Ultimate Fit Food	Mouth-Watering Recipes To Fuel You For Life	Gordon Ramsay	3	Hodder & Stoughton	288	27-12-2017	These Are My Go-To Recipes When I Want To Eat Well At Home. My Great Hope Is That They Will Inspire You To Get Cooking To Improve Your Own Health Whatever Your Personal Goal.
+14	The History of the World in Bite-Sized Chunks	History is a rich, varied, and fascinating subject, so it's rare to find the whole lot in one book	Emma Marriott	4	Michael O'Mara Books	192	08-09-2016	The History of the World in Bite-Sized Chunks pulls it all together, from the world's earliest civilizations in 3500 BC to the founding of the United Nations in 1945, passing by the likes of Charlemagne, the Ottoman Empire, and the Crimean War, to name a few.
+15	When Paris Sizzled	The 1920s Paris of Hemingway, Chanel, Cocteau, Cole Porter, Josephine Baker, and Their Friends	Mary McAuliffe	4	Rowman & Littlefield Publishers	344	04-02-2019	When Paris Sizzled vividly portrays the City of Light during the fabulous 1920s, les Années folles, when Parisians emerged from the horrors of war to find that a new world greeted them—one that reverberated with the hard metallic clang of the assembly line, the roar of automobiles, and the beat of jazz. Mary McAuliffe traces a decade that saw seismic change on almost every front, from art and architecture to music, literature, fashion, entertainment, transportation, and, most notably, behavior.
+16	Little Book Of Dior	he Story of the Iconic Fashion House	Karen Homer	4	Welbeck Publishing	160	05-03-2020	Little Book Of Dior Is The Pocket-Sized And Beautifully Illustrated Story Of 70 Years Of Opulent Fashion. Christian Dior'S Spectacular Rise To The Upper Echelons Of The Parisian Fashion World Is One Of The Most Compelling Stories Of Twentieth-Century Fashion. Dior'S Debut Collection In 1947 Invented The New Look Silhouette And Revolutionized The Way Women Dressed, Shopped And Saw Themselves.
+17	Harry Potter and the Sorcerer's Stone	Book 1	J.K. Rowling	5	Pottermore Publishing	208	01-09-1998	Harry Potter has never been the star of a Quidditch team, scoring points while riding a broom far above the ground. He knows no spells, has never helped to hatch a dragon, and has never worn a cloak of invisibility. All he knows is a miserable life with the Dursleys, his horrible aunt and uncle, and their abominable son, Dudley — a great big swollen spoiled bully. Harry's room is a tiny closet at the foot of the stairs, and he hasn't had a birthday party in eleven years.
+18	A Game of Thrones	A Song of Ice and Fire	George R. R. Martin	5	Voyager Books	694	01-0-1996	In the novel, recounting events from various points of view, Martin introduces the plot-lines of the noble houses of Westeros, the Wall, and the Targaryens. The novel has inspired several spin-off works, including several games.
+19	The Way Of Kings	Book One Of The Stormlight Archive	Brandon Sanderson	5	Tor Books	1280	24-05-2011	From #1 New York Times Bestselling Author Brandon Sanderson, The Way Of Kings, Book One Of The Stormlight Archive Begins An Incredible New Saga Of Epic Proportion. Roshar Is A World Of Stone And Storms. Uncanny Tempests Of Incredible Power Sweep Across The Rocky Terrain So Frequently That They Have Shaped Ecology And Civilization Alike. Animals Hide In Shells, Trees Pull In Branches, And Grass Retracts Into The Soilless Ground. Cities Are Built Only Where The Topography Offers Shelter.
+20	Color And Activity Books Dinosaur	With Over 60 Stickers, Pictures To Color, Puzzle Fun And More!	Roger Priddy	6	Priddy Books Us	36	22-05-2012	Preschoolers Will Have Hours Of Fun With This Dinosaur-Themed, Creative Book. There Are Lots Of Dinosaur Pictures To Color In, Puzzles To Complete And Drawing Activities, As Well As Over 60 Stickers To Place On The Book Pages. A Great Way For Kids To Learn While Having Fun!
+21	I Am Kind	The Positive Power Series	Suzy Capozzi	6	Rodale Press Inc.	32	10-10-2017	I Am Kind Follows A Little Girl Who Sees Kindness All Around Her. Her Mother Is Kind When She Volunteers In The Community, And Her Neighbor Is Kind When He Gives Her Strawberries From His Garden. Even Her Nature Troop Is Kind When They Take Care Of The Earth! The Little Girl Realizes That She, Too, Has The Power To Be Kind, And That Even Small Actions Can Have A Big Impact. In This New Installment Of The Positive Power Early Reader Series, Children Will Learn The Affirmation I Am Kind Through An Encouraging Story Of Community And Everyday Kindness.
+22	I Can Do It!	Holly's not a baby anymore. She can dress, eat, and clean up all by herself . . . almost!	Trish Holland	6	Golden Books Publishing Company	24	22-07-2014	When Holly clothes end up mismatched or her hair is sticking up, her family is always ready to step in and help. But there's one thing she does perfectly: she hugs Daddy good night before going right to sleep! This sweet, simple story is one that all preschoolers will relate to.
+23	The Art of Thinking Clearly	serious examination of the faulty reasoning that leads to repeated mistakes by individuals, businesses, and nations...In this fascinating book	Rolf Dobelli	7	Harper Collins USA	358	06-05-2014	Simple, clear, and always surprising, this indispensable book will change the way you think and transform your decision-making work, at home, every day. It reveals, in 99 short chapters, the most common errors of judgment, and how to avoid them.
+24	Atomic Habits	An Easy & Proven Way To Build Good Habits & Break Bad Ones	James Clear	7	very Publishing Group	320	16-10-2018	The #1 New York Times Bestseller. Over 1 Million Copies Sold! Tiny Changes, Remarkable Results No Matter Your Goals, Atomic Habits Offers A Proven Framework For Improving Every Day. James Clear, One Of The World'S Leading Experts On Habit Formation, Reveals Practical Strategies That Will Teach You Exactly How To Form Good Habits, Break Bad Ones, And Master The Tiny Behaviors That Lead To Remarkable Results.
+25	The Power Of Now	A Guide To Spiritual Enlightenment	Eckhart Tolle	7	New World Library	208	27-09-1999	The Power Of Now He Shows Readers How To Recognize Themselves As The Creators Of Their Own Pain, And How To Have A Pain-Free Existence By Living Fully In The Present. Accessing The Deepest Self, The True Self, Can Be Learned, He Says, By Freeing Ourselves From The Conflicting, Unreasonable Demands Of The Mind And Living Present, Fully, And Intensely, In The Now.
+\.
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: student
+--
+
+SELECT pg_catalog.setval('public.categories_id_seq', 7, true);
+
+
+--
+-- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: student
+--
+
+SELECT pg_catalog.setval('public.books_id_seq', 25, true);
+
+
+--
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: student
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: student
+--
+
+ALTER TABLE ONLY public.books
+    ADD CONSTRAINT books_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: books category; Type: FK CONSTRAINT; Schema: public; Owner: student
+--
+
+ALTER TABLE ONLY public.books
+    ADD CONSTRAINT category FOREIGN KEY (category) REFERENCES public.categories(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
