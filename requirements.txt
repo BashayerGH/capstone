@@ -57,7 +57,6 @@ pluggy==0.13.1
 psycopg2==2.8.4
 py==1.8.1
 pyasn1==0.4.8
-pychromedriver==76.0.3809.68
 pycodestyle==2.5.0
 pycparser==2.19
 PyJWT==1.7.1
