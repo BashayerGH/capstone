@@ -13,11 +13,17 @@ BASE = '/api/booksgallery/v1';
 def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
-  CORS(app)
   setup_db(app)
+  CORS(app)
 
 
 
+  @app.route('/')
+  def get_greeting():
+    excited = os.environ['EXCITED']
+    greeting = "Hello, welcome to Book Gallery" 
+    if excited == 'true': greeting = greeting + "!!!"
+    return greeting
 
   # GET all available categories
   @app.route(BASE+'/categories')
@@ -245,4 +251,4 @@ def create_app(test_config=None):
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run()
