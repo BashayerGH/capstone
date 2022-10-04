@@ -78,4 +78,4 @@ xlrd==1.2.0
 XlsxWriter==1.1.8
 yagmail==0.11.220
 zipp==3.1.0
-python3-dotenv
+python-dotenv==0.15.0
