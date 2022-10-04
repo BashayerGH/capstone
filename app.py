@@ -13,17 +13,9 @@ BASE = '/api/booksgallery/v1';
 def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
+  CORS(app)
   setup_db(app)
-  # CORS(app)
-  # Set up CORS. Allow '*' for origins.
-  cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-  # Use the after_request decorator to set Access-Control-Allow
-  @app.after_request
-  def after_request(response):
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization, true')
-    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
-    return response
 
 
 
@@ -250,7 +242,7 @@ def create_app(test_config=None):
 
   return app
 
-APP = create_app()
+app = create_app()
 
 if __name__ == '__main__':
-    APP.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)

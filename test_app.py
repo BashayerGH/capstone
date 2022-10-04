@@ -8,13 +8,10 @@ from models import setup_db, Book, Category
 
 
 BASE = '/api/booksgallery/v1';
-TOKEN_ADMIN = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ii1Ra29JM192TGhjbDBqUEJqcTVzUiJ9.eyJpc3MiOiJodHRwczovL2Rldi04MGp1bnotZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMzYTNmYTU1ZTk2YzViMmQxYTUwZWQwIiwiYXVkIjoiQm9va3NHYWxsZXJ5QVBJIiwiaWF0IjoxNjY0ODIwMTAxLCJleHAiOjE2NjQ4MjczMDEsImF6cCI6ImNOWFdOY3F0cjJCY1JYQ2RTS2pNM290N0lFbXNGRHd2Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6Ym9va3MiLCJlZGl0OmJvb2tzIiwiZ2V0OmJvb2tzIiwiZ2V0OmJvb2tzQnlDYXRlZ29yeSIsImdldDpib29rc0J5U2VhcmNoVGVybSIsImdldDpjYXRlZ29yaWVzIiwicG9zdDpib29rcyJdfQ.uywwGOA_fPuD1xyfZzFGNzpOdiv8W_s6LoYzHeZCvS5Yz2KRbrZQp7jTqnUvzMdJY1XEPD5-2fHtizSel5nsyNdWMo0CPSDDaI6itAvnizzPyNCkj_kCepeLxm7Pwh0F0AQ7aShYtZ7eaCs8f-gELswKi010rsY9d6-AXWBBJkzXukhWCQZ27dCauK5Xa6LJ7yGn2EyB2CTaDY-GiiKBGdVojD2cLhF0h0Wbnx5wsuay6jxXJ9C0kngbaFg-L6Ao6rmX_O1ZSKnFjTD6RDi2C20vcmV3M0O1-LJZoQyYceUK5qf7tRKCX7-h2wB15JXaeBX1KGQrxJzdI55KB4iHOA'
+TOKEN_ADMIN = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ii1Ra29JM192TGhjbDBqUEJqcTVzUiJ9.eyJpc3MiOiJodHRwczovL2Rldi04MGp1bnotZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMzYTNmYTU1ZTk2YzViMmQxYTUwZWQwIiwiYXVkIjoiQm9va3NHYWxsZXJ5QVBJIiwiaWF0IjoxNjY0ODUzNzYwLCJleHAiOjE2NjQ4NjA5NjAsImF6cCI6ImNOWFdOY3F0cjJCY1JYQ2RTS2pNM290N0lFbXNGRHd2Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6Ym9va3MiLCJlZGl0OmJvb2tzIiwiZ2V0OmJvb2tzIiwiZ2V0OmJvb2tzQnlDYXRlZ29yeSIsImdldDpib29rc0J5U2VhcmNoVGVybSIsImdldDpjYXRlZ29yaWVzIiwicG9zdDpib29rcyJdfQ.eFQJDxl33XsgIx_TQm2KQbolWOGV9WHRiShKUunmTlYYk8ynUxcJDxBgwZmNab5lmx7THpwYaBfekttGdYI89lCu_Y2wNIhxhBVOhECjwU9-9-E1_dSJgW0IoMKOCyTc7z6TcMspXIL3-cxbXMudH72JmTpO7OkQPdCQCFHY9pYnxKncbNTJqZGNrr5sanpwPu-vBeqAysISqUk1YAjE0JYmrAVlIMvaPD5FB-9_-aIkevm4HV0iIFMR1tu2napaHhoJ5g2qafRN_Tz6bcXOHVVO-l8PetNMCrwLu381kLzqB08HwWCgCC3n6b8cEneWkrmrfrTvK0zAvfypgzsC6g'
 TOKEN_CLIENT = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ii1Ra29JM192TGhjbDBqUEJqcTVzUiJ9.eyJpc3MiOiJodHRwczovL2Rldi04MGp1bnotZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMzYjM1ZmQ2Yzk5ZDgxNjA3NjQyYjJmIiwiYXVkIjoiQm9va3NHYWxsZXJ5QVBJIiwiaWF0IjoxNjY0ODI0OTczLCJleHAiOjE2NjQ4MzIxNzMsImF6cCI6ImNOWFdOY3F0cjJCY1JYQ2RTS2pNM290N0lFbXNGRHd2Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6Ym9va3MiLCJnZXQ6Ym9va3NCeUNhdGVnb3J5IiwiZ2V0OmJvb2tzQnlTZWFyY2hUZXJtIiwiZ2V0OmNhdGVnb3JpZXMiXX0.tLSolulXU7weeB2RJLT5kI5n2W6Dt1ebIWLbdjy40bm15AeIz_CICknWcKXr9yvdCB19hfROXF11tv3OTiJd4iGnU-Bh051MQ-JVYGMo5qx8G6jG3ou2dBPFSP4vV725AF-qXmykrOxty2zd0_lBDpJfR0HVfsPsWeEHDzzrDzEE6-liP2QMZ6YQhsC0j0ghd9wJiMPxyPmNRw2KHbpSAHKgMZxs6iFP2vKOxaiXRnREpXYVSWTuIGfCX83XBlRDqd35shQM-c8KW0IcohDSVZA8pNo0mB3OEPWTttCBpiTwYpPLeUwFmZPqv-yVALus1br7A5Roaj1ZWdy0gc-ADg'
 
 class BooksGalleryTestCase(unittest.TestCase):
-
-    # TODO: Refactor the below end points
-    # TODO: Includes tests demonstrating role-based access control, at least two per role.
 
     """This class represents the trivia test case"""
 
@@ -70,24 +67,23 @@ class BooksGalleryTestCase(unittest.TestCase):
 
 
 
-    # TODO: insert a valid data
+
     def test_post_new_book(self):
             self.book_data = {
-                'category': '1',
-                'title': 'Jupiter',
-                'sub_title': 'data',
-                'author': 'test',
-                'publisher': 'testing',
-                'pages': 250,
-                'publish_date': '15-08-1996',
-                'description': 'data'
+                'category': '7',
+                'title': 'Think And Grow Rich',
+                'sub_title': 'The Landmark Bestseller Now Revised And Updated For The 21St Century',
+                'author': 'Napoleon Hill',
+                'publisher': 'Tarcherperigee',
+                'pages': 320,
+                'publish_date': '01-09-2005',
+                'description': 'Think And Grow Rich Has Been Called The Granddaddy Of All Motivational Literature.'
             }
             res = self.client().post(BASE+'/books', json=self.book_data, headers = {'Content-Type': 'application/json', 'Authorization': TOKEN_ADMIN})
             data = json.loads(res.data)
             self.assertEqual(res.status_code, 200)
             self.assertIsNotNone(data['title'])
 
-        # TODO: insert the rest data
     def test_post_empty_books(self):
             self.book_empty = {
                 'category': '1',
@@ -128,7 +124,7 @@ class BooksGalleryTestCase(unittest.TestCase):
             self.assertTrue(data['total'])
             self.assertTrue(data['books'])
 
-    def test_get_questions_by_invalid_category_id(self):
+    def test_get_books_by_invalid_category_id(self):
             res = self.client().get('/categories/11/books', headers = {'Content-Type': 'application/json', 'Authorization': TOKEN_ADMIN})
             data = json.loads(res.data)
             self.assertEqual(res.status_code, 404)
@@ -152,7 +148,7 @@ class BooksGalleryTestCase(unittest.TestCase):
             self.assertEqual(data['success'], False)
 
 
-    def test_search_invalid_data_questions(self):
+    def test_search_invalid_data_books(self):
             res = self.client().post(BASE+'/books/search',
                                     json={'searchTerm': 'test121212'}, headers = {'Content-Type': 'application/json', 'Authorization': TOKEN_ADMIN})
             data = json.loads(res.data)
@@ -161,7 +157,7 @@ class BooksGalleryTestCase(unittest.TestCase):
 
 
 
-    # TODO: Use a valid data
+
     def test_patch_existing_book(self):
             data_json = {
                 'title': 'Harry Potter and the Sorcerers Stone',
@@ -174,12 +170,11 @@ class BooksGalleryTestCase(unittest.TestCase):
             self.assertEqual(data['success'], True)
             self.assertIsNotNone(data['books'])
 
-    # TODO: Use a valid data
     def test_patch_book_invalid_id(self):
             data_json = {
                 'title': 'Why We Sleep',
-                'subtitle': 'subtitle',
-                'description': 'description'
+                'subtitle': 'Unlocking The Power Of Sleep And Dreams',
+                'description': 'Fascinating Book'
             }
             res = self.client().patch(BASE+'books/320', json=data_json, headers = {'Content-Type': 'application/json', 'Authorization': TOKEN_ADMIN})
             data = json.loads(res.data)
