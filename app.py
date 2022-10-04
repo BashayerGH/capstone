@@ -20,7 +20,7 @@ def create_app(test_config=None):
 
   @app.route('/')
   def get_greeting():
-    excited = os.environ['EXCITED']
+    excited = os.getenv('EXCITED', 'true')
     greeting = "Hello, welcome to Book Gallery" 
     if excited == 'true': greeting = greeting + "!!!"
     return greeting
