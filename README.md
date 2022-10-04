@@ -26,7 +26,6 @@ Start Postgresql
 https://github.com/BashayerGH/capstone
 ```
 
-
 ## Running the server
 To run the server, execute:
 
